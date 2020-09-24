@@ -1,0 +1,30 @@
+// Breakpoints
+@mixin for-phone-only {
+	@media (max-width: 500px) {
+		@content;
+	}
+}
+
+@mixin for-tablet {
+	@media (max-width: 768px) {
+		@content;
+	}
+}
+
+@mixin for-mobile {
+	@media (max-width: 1366px) {
+		@content;
+	}
+}
+
+@mixin for-small-desktop {
+	@media (max-width: 1440px) {
+		@content;
+	}
+}
+
+@mixin for-big-desktop-up {
+	@media (min-width: 1921px) {
+		@content;
+	}
+}
