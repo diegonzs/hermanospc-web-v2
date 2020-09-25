@@ -101,6 +101,10 @@ export const MenuItems = ({ isMenuVisible }) => {
 			))}
 			<style jsx>{`
 				@import 'variables.scss';
+				:global(body) {
+					overflow: ${isMenuVisible ? 'hidden' : 'unset'};
+					opacity: 1;
+				}
 				.list-items {
 					display: grid;
 					grid-auto-rows: auto;
@@ -108,7 +112,7 @@ export const MenuItems = ({ isMenuVisible }) => {
 					grid-row-gap: 31px;
 					width: 100%;
 					@include for-mobile {
-						position: absolute;
+						position: fixed;
 						top: -100vh;
 						left: 0;
 						width: 100%;

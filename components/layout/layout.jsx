@@ -1,4 +1,5 @@
 import { AuthRightPanel } from 'components/auth-right-panel';
+import Head from 'next/head';
 import { IconBtn } from 'components/icon-btn';
 import { LatestNews } from 'components/latest-news';
 import * as React from 'react';
@@ -30,6 +31,11 @@ export const Layout = ({ children, rightPanel }) => {
 
 	return (
 		<>
+			<Head>
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<meta name="theme-color" content="#000000" />
+				<link rel="shorcut icon" href="/brand/favicon.png" />
+			</Head>
 			<div className="layout-container">
 				<aside className="menu">
 					<Menu />
@@ -140,6 +146,7 @@ export const Layout = ({ children, rightPanel }) => {
 					display: flex;
 					justify-content: center;
 					padding: 35px 20px;
+					overflow: hidden;
 					@include for-mobile {
 						margin-bottom: 56px;
 					}
@@ -172,6 +179,7 @@ export const Layout = ({ children, rightPanel }) => {
 					color: ${theme.colors.dark.texts.text};
 					font-size: ${theme.typografy.paragraph}px;
 					line-height: 1.6;
+					overflow-x: hidden;
 				}
 			`}</style>
 		</>

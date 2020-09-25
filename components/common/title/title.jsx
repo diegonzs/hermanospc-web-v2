@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import theme from 'theme';
 
 const TitleH1 = ({ children }) => {
@@ -76,6 +77,16 @@ const TitleH4 = ({ children }) => {
 	);
 };
 
+/**
+ * @typedef {Object} TitleProps
+ * @property {'h1' | 'h2' | 'h3' | 'h4'} type
+ * @property {any} children
+ */
+
+/**
+ *
+ * @param {TitleProps} props
+ */
 export const Title = ({ type, children }) => {
 	switch (type) {
 		case 'h1':
@@ -89,4 +100,8 @@ export const Title = ({ type, children }) => {
 		default:
 			return <TitleH1>{children}</TitleH1>;
 	}
+};
+
+Title.propTypes = {
+	type: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4']),
 };

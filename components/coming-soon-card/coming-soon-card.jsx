@@ -6,7 +6,7 @@ import theme from 'theme';
 export const ComingSoonCard = () => {
 	return (
 		<div className="container">
-			<img className="image" src="" alt="" />
+			<img className="image" src="/images/testing/social-platform.png" alt="" />
 			<div className="content">
 				<Title type="h2">New Social Platform Coming Soon!</Title>
 				<Paragraph>
@@ -14,6 +14,7 @@ export const ComingSoonCard = () => {
 				</Paragraph>
 			</div>
 			<style jsx>{`
+				@import 'variables.scss';
 				.container {
 					display: flex;
 					align-items: center;
@@ -23,6 +24,10 @@ export const ComingSoonCard = () => {
 					padding: 29px 40px;
 					border-radius: 40px;
 					background-color: ${theme.colors.dark.backgrounds.card};
+					@include for-mobile {
+						flex-direction: column;
+						padding: 32px 16px;
+					}
 				}
 				.image {
 					background-color: ${theme.colors.dark.backgrounds.background};
@@ -30,6 +35,12 @@ export const ComingSoonCard = () => {
 					height: 228px;
 					object-fit: cover;
 					display: flex;
+					border-radius: 20px;
+					@include for-mobile {
+						width: 100%;
+						height: auto;
+						margin-bottom: 20px;
+					}
 				}
 				.content {
 					display: grid;

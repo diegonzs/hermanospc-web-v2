@@ -13,12 +13,12 @@ const Home = () => {
 				<div className="head-content">
 					<Title type="h1">For the Community</Title>
 					<ul className="social-media-list">
+						<SocialIcon icon="tiktok" />
 						<SocialIcon icon="facebook" />
-						<SocialIcon icon="facebook" />
-						<SocialIcon icon="facebook" />
-						<SocialIcon icon="facebook" />
-						<SocialIcon icon="facebook" />
-						<SocialIcon icon="facebook" />
+						<SocialIcon icon="discord" />
+						<SocialIcon icon="tiktok" />
+						<SocialIcon icon="linkedin" />
+						<SocialIcon icon="discord" />
 					</ul>
 				</div>
 				<ul className="feature-links-container">
@@ -50,19 +50,28 @@ const Home = () => {
 				<NewsletterForm />
 			</Layout>
 			<style jsx>{`
+				@import 'variables.scss';
 				.head-content {
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
 					margin-bottom: 74px;
-				}
-				.social-media-list {
-					display: grid;
-					margin: 0;
-					padding: 0;
-					grid-auto-flow: column;
-					grid-auto-columns: auto;
-					grid-column-gap: 8px;
+					.social-media-list {
+						display: grid;
+						margin: 0;
+						padding: 0;
+						grid-auto-flow: column;
+						grid-auto-columns: auto;
+						grid-column-gap: 8px;
+					}
+					@include for-mobile {
+						flex-direction: column;
+						align-items: flex-start;
+						margin-bottom: 20px;
+						.social-media-list {
+							margin-top: 8px;
+						}
+					}
 				}
 				.feature-links-container {
 					display: grid;
@@ -70,6 +79,21 @@ const Home = () => {
 					grid-auto-flow: column;
 					grid-column-gap: 38px;
 					margin-bottom: 48px;
+					justify-content: center;
+					@include for-mobile {
+						justify-content: start;
+						overflow-x: scroll;
+						overflow-y: hidden;
+						width: 100vw;
+						margin-left: -50vw;
+						margin-right: -50vw;
+						position: relative;
+						padding: 0 20px;
+						padding-top: 30px;
+						left: 50%;
+						right: 50%;
+						margin-bottom: 56px;
+					}
 				}
 				.coming-soon-card-container {
 					margin-bottom: 44px;

@@ -22,13 +22,17 @@ export const NewsletterForm = () => {
 				<MainBtn href="/" text="Register" type="form" />
 			</form>
 			<style jsx>{`
+				@import 'variables.scss';
 				.container {
 					display: grid;
-					grid-auto-columns: auto;
 					grid-auto-flow: column;
 					grid-column-gap: 56px;
 					justify-content: center;
 					width: 100%;
+					@include for-mobile {
+						grid-auto-flow: row;
+						grid-row-gap: 30px;
+					}
 				}
 				.content {
 					display: grid;
