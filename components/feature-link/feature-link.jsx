@@ -23,6 +23,8 @@ export const FeatureLink = ({ topColor, bottomColor, title, description, image }
 					position: relative;
 					border-radius: 32px;
 					background-image: linear-gradient(180deg, ${topColor}, ${bottomColor});
+					text-decoration: none;
+					cursor: pointer;
 				}
 				.image {
 					position: absolute;

@@ -22,7 +22,7 @@ export const SecondBtn = ({ text, href, isDisabled = false, type = 'default' }) 
 					{text}
 				</a>
 			) : (
-				<button className={`btn ${isDisabled ? 'disabled' : ''}`}>{text}</button>
+				<button className={`btn ${isDisabled ? 'disabled' : ''} ${type}`}>{text}</button>
 			)}
 			<style jsx>{`
 				.btn {

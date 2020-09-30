@@ -3,6 +3,7 @@ import { MainBtn } from 'components/common/main-btn';
 import { Paragraph } from 'components/common/paragraph';
 import { Title } from 'components/common/title';
 import * as React from 'react';
+import { Form } from './form';
 
 export const NewsletterForm = () => {
 	return (
@@ -11,16 +12,7 @@ export const NewsletterForm = () => {
 				<Title type="h2">Stay alert and get rewards!</Title>
 				<Paragraph>Earlier adopters can request a username and will have unique rewards.</Paragraph>
 			</div>
-			<form
-				className="form"
-				action="POST"
-				onSubmit={(e) => {
-					e.preventDefault();
-				}}
-			>
-				<Input />
-				<MainBtn href="/" text="Register" type="form" />
-			</form>
+			<Form />
 			<style jsx>{`
 				@import 'variables.scss';
 				.container {
@@ -40,13 +32,6 @@ export const NewsletterForm = () => {
 					grid-auto-rows: auto;
 					grid-row-gap: 24px;
 					max-width: 318px;
-				}
-				.form {
-					display: grid;
-					grid-auto-rows: auto;
-					grid-auto-flow: row;
-					grid-row-gap: 16px;
-					align-content: center;
 				}
 			`}</style>
 		</div>

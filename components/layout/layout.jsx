@@ -181,6 +181,15 @@ export const Layout = ({ children, rightPanel }) => {
 					line-height: 1.6;
 					overflow-x: hidden;
 				}
+				a {
+					text-decoration: none;
+				}
+				button {
+					font-family: 'Poppins', 'sans-serif';
+				}
+				li {
+					list-style: none;
+				}
 			`}</style>
 		</>
 	);

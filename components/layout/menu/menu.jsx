@@ -3,7 +3,6 @@ import { IconBtn } from 'components/icon-btn';
 import { Logo } from '../logo';
 import { MenuBtn } from '../menu-btn';
 import { MenuItems } from '../menu-items';
-import { MainBtn } from 'components/common/main-btn';
 import { AuthHeader } from 'components/auth-header';
 
 export const Menu = () => {

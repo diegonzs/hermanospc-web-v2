@@ -8,13 +8,14 @@ import theme from 'theme';
  * @property {string} [href]
  * @property {boolean} [isDisabled]
  * @property {'header' | 'default' | 'form'} [type]
+ * @property {() => void} [onClick]
  */
 
 /**
  *
  * @param {MainBtnProps} props
  */
-export const MainBtn = ({ text, href, isDisabled = false, type = 'default' }) => {
+export const MainBtn = ({ text, href, isDisabled = false, type = 'default', onClick }) => {
 	return (
 		<>
 			{href ? (
@@ -22,7 +23,12 @@ export const MainBtn = ({ text, href, isDisabled = false, type = 'default' }) =>
 					{text}
 				</a>
 			) : (
-				<button className={`btn ${isDisabled ? 'disabled' : ''}`}>{text}</button>
+				<button
+					className={`btn ${isDisabled ? 'disabled' : ''} ${type}`}
+					onClick={() => (isDisabled ? console.log('esta deshabilitado') : onClick())}
+				>
+					{text}
+				</button>
 			)}
 			<style jsx>{`
 				.btn {
@@ -33,7 +39,8 @@ export const MainBtn = ({ text, href, isDisabled = false, type = 'default' }) =>
 					border: none;
 					font-weight: 600;
 					color: ${theme.colors.dark.texts.textBtn};
-					transition: all 1s ease-in-out;
+					transition: all 0.2s ease-in-out;
+					cursor: pointer;
 					background-image: linear-gradient(
 						180deg,
 						${theme.colors.dark.main.mainBtn.top},
@@ -45,6 +52,9 @@ export const MainBtn = ({ text, href, isDisabled = false, type = 'default' }) =>
 							${theme.colors.dark.main.mainBtn.top},
 							${theme.colors.dark.main.mainBtn.top}
 						);
+					}
+					&:focus {
+						outline: none;
 					}
 				}
 				.disabled {

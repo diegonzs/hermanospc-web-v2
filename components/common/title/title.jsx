@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import theme from 'theme';
 
-const TitleH1 = ({ children }) => {
+const TitleH1 = ({ children, center }) => {
 	return (
 		<>
 			<h1>{children}</h1>
@@ -11,6 +11,7 @@ const TitleH1 = ({ children }) => {
 				h1 {
 					font-size: ${theme.typografy.heading1.large}px;
 					color: ${theme.colors.dark.texts.title};
+					text-align: ${center ? 'center' : 'left'};
 					margin: 0;
 					@include for-small-desktop {
 						font-size: ${theme.typografy.heading1.medium}px;
@@ -23,7 +24,7 @@ const TitleH1 = ({ children }) => {
 		</>
 	);
 };
-const TitleH2 = ({ children }) => {
+const TitleH2 = ({ children, center }) => {
 	return (
 		<>
 			<h2>{children}</h2>
@@ -32,6 +33,7 @@ const TitleH2 = ({ children }) => {
 				h2 {
 					font-size: ${theme.typografy.heading2.large}px;
 					color: ${theme.colors.dark.texts.title};
+					text-align: ${center ? 'center' : 'left'};
 					margin: 0;
 					@include for-small-desktop {
 						font-size: ${theme.typografy.heading2.medium}px;
@@ -44,7 +46,7 @@ const TitleH2 = ({ children }) => {
 		</>
 	);
 };
-const TitleH3 = ({ children }) => {
+const TitleH3 = ({ children, center }) => {
 	return (
 		<>
 			<h3>{children}</h3>
@@ -53,6 +55,7 @@ const TitleH3 = ({ children }) => {
 				h3 {
 					font-size: ${theme.typografy.heading3.large}px;
 					color: ${theme.colors.dark.texts.title};
+					text-align: ${center ? 'center' : 'left'};
 					margin: 0;
 					@include for-mobile {
 						font-size: ${theme.typografy.heading3.small}px;
@@ -62,7 +65,7 @@ const TitleH3 = ({ children }) => {
 		</>
 	);
 };
-const TitleH4 = ({ children }) => {
+const TitleH4 = ({ children, center }) => {
 	return (
 		<>
 			<h4>{children}</h4>
@@ -70,6 +73,7 @@ const TitleH4 = ({ children }) => {
 				h4 {
 					font-size: ${theme.typografy.heading4.large}px;
 					color: ${theme.colors.dark.texts.title};
+					text-align: ${center ? 'center' : 'left'};
 					margin: 0;
 				}
 			`}</style>
@@ -80,6 +84,7 @@ const TitleH4 = ({ children }) => {
 /**
  * @typedef {Object} TitleProps
  * @property {'h1' | 'h2' | 'h3' | 'h4'} type
+ * @property {boolean} [center]
  * @property {any} children
  */
 
@@ -87,18 +92,18 @@ const TitleH4 = ({ children }) => {
  *
  * @param {TitleProps} props
  */
-export const Title = ({ type, children }) => {
+export const Title = ({ type, children, center }) => {
 	switch (type) {
 		case 'h1':
-			return <TitleH1>{children}</TitleH1>;
+			return <TitleH1 center={!!center}>{children}</TitleH1>;
 		case 'h2':
-			return <TitleH2>{children}</TitleH2>;
+			return <TitleH2 center={!!center}>{children}</TitleH2>;
 		case 'h3':
-			return <TitleH3>{children}</TitleH3>;
+			return <TitleH3 center={!!center}>{children}</TitleH3>;
 		case 'h4':
-			return <TitleH4>{children}</TitleH4>;
+			return <TitleH4 center={!!center}>{children}</TitleH4>;
 		default:
-			return <TitleH1>{children}</TitleH1>;
+			return <TitleH1 center={!!center}>{children}</TitleH1>;
 	}
 };
 

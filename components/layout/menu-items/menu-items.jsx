@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SVG from 'react-inlinesvg';
 import theme from 'theme';
@@ -8,81 +9,101 @@ const items = [
 		id: 'home',
 		title: 'home',
 		image: '/images/menu-icons/home.svg',
+		path: '/',
 	},
 	{
 		id: 'brotherhoods',
 		title: 'Brotherhoods',
 		image: '/images/menu-icons/brotherhood.svg',
+		path: '/',
 	},
 	{
 		id: '3drooms',
 		title: '3D Rooms',
 		image: '/images/menu-icons/3d-room.svg',
+		path: '/',
 	},
 	{
 		id: 'news',
 		title: 'News',
 		image: '/images/menu-icons/home.svg',
+		path: '/',
 	},
 	{
 		id: 'calculator',
 		title: 'Calculator',
 		image: '/images/menu-icons/calculator.svg',
+		path: '/calculator',
 	},
 	{
 		id: 'free-to-play',
 		title: 'Free to play',
 		image: '/images/menu-icons/free-to-play.svg',
+		path: '/free-to-play',
 	},
 	{
-		id: 'wallspapers',
+		id: 'blog',
+		title: 'Blog',
+		image: '/images/menu-icons/home.svg',
+		path: '/blog',
+	},
+	{
+		id: 'wallpapers',
 		title: 'Wallspapers',
 		image: '/images/menu-icons/home.svg',
+		path: '/wallpapers',
 	},
 ];
 
-const Item = ({ isActive, image, title }) => {
+const Item = ({ isActive, image, title, path }) => {
 	return (
-		<li className={`item ${isActive ? 'item-active' : ''}`}>
-			<SVG className="icon" src={image} />
-			<span className="text">{title}</span>
-			<style jsx>{`
-				@import 'variables.scss';
-				.item {
-					display: flex;
-					padding-left: 25px;
-					cursor: pointer;
-					& > :global(svg) {
-						width: 22px;
+		<Link href={path}>
+			<a>
+				<li className={`item ${isActive ? 'item-active' : ''}`}>
+					<SVG className="icon" src={image} />
+					<span className="text">{title}</span>
+				</li>
+				<style jsx>{`
+					@import 'variables.scss';
+					a {
+						text-decoration: none;
 					}
-					&:before {
-						content: '';
-						position: absolute;
-						left: 0;
-						height: 25px;
-						width: 5px;
-						background-color: ${isActive ? theme.colors.dark.main.accent : 'transparent'};
-					}
-					&:hover {
-						.text {
-							color: ${theme.colors.dark.main.accent};
-							margin-left: 30px;
+					.item {
+						display: flex;
+						padding-left: 25px;
+						cursor: pointer;
+						& > :global(svg) {
+							width: 22px;
+						}
+						&:before {
+							content: '';
+							position: absolute;
+							left: 0;
+							height: 25px;
+							width: 5px;
+							background-color: ${isActive ? theme.colors.dark.main.accent : 'transparent'};
+						}
+						&:hover {
+							.text {
+								color: ${theme.colors.dark.main.accent};
+								margin-left: 30px;
+							}
 						}
 					}
-				}
-				.text {
-					margin-left: 30px;
-					color: ${isActive ? theme.colors.dark.icons.iconOnlyActive : theme.colors.dark.icons.iconOnly};
-					font-weight: 600;
-					@include for-small-desktop {
-						display: none;
+					.text {
+						margin-left: 30px;
+						color: ${isActive ? theme.colors.dark.icons.iconOnlyActive : theme.colors.dark.icons.iconOnly};
+						font-weight: 600;
+						@include for-small-desktop {
+							display: none;
+						}
+						@include for-mobile {
+							display: inline;
+						}
 					}
-					@include for-mobile {
-						display: inline;
-					}
-				}
-			`}</style>
-		</li>
+				`}</style>
+			</a>
+		</Link>
 	);
 };
 
