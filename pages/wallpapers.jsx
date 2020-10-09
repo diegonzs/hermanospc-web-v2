@@ -2,12 +2,13 @@ import { Title } from 'components/common/title';
 import { HeadTitle } from 'components/head-title';
 import { Layout } from 'components/layout';
 import { WallpaperElem } from 'components/wallpaper-elem';
+import { WallpaperRightPanel } from 'components/wallpaper-right-panel';
 import { getAllWallpapers } from 'lib/prismic-api';
 import * as React from 'react';
 
 const Wallpapers = ({ allMobileWallpapers, allDesktopWallpapers }) => {
 	return (
-		<Layout>
+		<Layout rightPanel={<WallpaperRightPanel />}>
 			<HeadTitle>Wallpapers</HeadTitle>
 			<section>
 				<Title type="h3">Desktop</Title>

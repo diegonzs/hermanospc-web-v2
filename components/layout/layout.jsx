@@ -112,6 +112,7 @@ export const Layout = ({ children, rightPanel }) => {
 						border-radius: 0;
 						transition: transform 0.25s ease;
 						padding: 17px 24px 0;
+						border-top: 2px solid ${theme.colors.dark.main.accent};
 						.auth-container {
 							display: none;
 						}
@@ -128,6 +129,7 @@ export const Layout = ({ children, rightPanel }) => {
 				.full {
 					@include for-mobile {
 						transform: translateY(-100vh);
+						border-top: none;
 						.grab-line {
 							display: flex;
 						}
@@ -137,6 +139,7 @@ export const Layout = ({ children, rightPanel }) => {
 					@include for-mobile {
 						transform: translateY(-40vh);
 						border-radius: 32px 32px 0 0;
+						border-top: none;
 						.grab-line {
 							display: flex;
 						}
