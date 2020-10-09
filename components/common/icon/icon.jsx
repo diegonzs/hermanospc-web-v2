@@ -1,11 +1,11 @@
 import * as React from 'react';
-// import SVG from 'react-inlinesvg';
+import SVG from 'react-inlinesvg';
 import theme from 'theme';
 
-export const SocialIcon = ({ icon }) => {
+export const Icon = ({ src }) => {
 	return (
 		<div className="container">
-			<img src={`/images/social-media/${icon}.svg`} alt={icon} />
+			<img src={src} />
 			<style jsx>{`
 				.container {
 					width: 32px;
@@ -15,7 +15,6 @@ export const SocialIcon = ({ icon }) => {
 					align-items: center;
 					border-radius: 10px;
 					background-color: ${theme.colors.dark.main.smallBtn};
-					cursor: pointer;
 					img {
 						width: 17px;
 					}

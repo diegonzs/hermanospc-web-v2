@@ -25,7 +25,7 @@ export const MainBtn = ({ text, href, isDisabled = false, type = 'default', onCl
 			) : (
 				<button
 					className={`btn ${isDisabled ? 'disabled' : ''} ${type}`}
-					onClick={() => (isDisabled ? console.log('esta deshabilitado') : onClick())}
+					onClick={() => (isDisabled || !onClick ? null : onClick())}
 				>
 					{text}
 				</button>

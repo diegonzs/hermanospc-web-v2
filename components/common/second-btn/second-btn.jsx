@@ -8,13 +8,14 @@ import theme from 'theme';
  * @property {string} [href]
  * @property {boolean} [isDisabled]
  * @property {'header' | 'default'} [type]
+ * @property {() => void} [onClick]
  */
 
 /**
  *
  * @param {SecondBtnProps} props
  */
-export const SecondBtn = ({ text, href, isDisabled = false, type = 'default' }) => {
+export const SecondBtn = ({ text, href, isDisabled = false, type = 'default', onClick }) => {
 	return (
 		<>
 			{href ? (
@@ -22,7 +23,12 @@ export const SecondBtn = ({ text, href, isDisabled = false, type = 'default' }) 
 					{text}
 				</a>
 			) : (
-				<button className={`btn ${isDisabled ? 'disabled' : ''} ${type}`}>{text}</button>
+				<button
+					className={`btn ${isDisabled ? 'disabled' : ''} ${type}`}
+					onClick={() => (isDisabled || !onClick ? null : onClick())}
+				>
+					{text}
+				</button>
 			)}
 			<style jsx>{`
 				.btn {
@@ -35,6 +41,7 @@ export const SecondBtn = ({ text, href, isDisabled = false, type = 'default' }) 
 					color: ${theme.colors.dark.texts.title};
 					transition: all 1s ease-in-out;
 					background-color: transparent;
+					cursor: pointer;
 				}
 				.default {
 					padding: 0 32px;

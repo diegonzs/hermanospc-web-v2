@@ -1,25 +1,32 @@
 import { InfoCard } from 'components/common/info-card';
 import { Title } from 'components/common/title';
+import Link from 'next/link';
 import * as React from 'react';
 import theme from 'theme';
 
 export const NewsCard = ({ title, description, id, source, image }) => {
 	return (
-		<div className="container">
-			<div className="head-content">
-				<img src={image} alt="" />
-				<Title type="h3">{title}</Title>
-			</div>
-			<div className="description">
-				<InfoCard>{description}</InfoCard>
-			</div>
-			<div className="bottom-content">
-				<div className="source-content">
-					<img src={source.icon} alt="" />
-					<span>{source.name}</span>
-				</div>
-				<span className="read-btn">READ</span>
-			</div>
+		<>
+			<Link href={`news/${id}`}>
+				<a>
+					<div className="container">
+						<div className="head-content">
+							<img src={image} alt="" />
+							<Title type="h3">{title}</Title>
+						</div>
+						<div className="description">
+							<InfoCard>{description}</InfoCard>
+						</div>
+						<div className="bottom-content">
+							<div className="source-content">
+								<img src={source.icon} alt="" />
+								<span>{source.name}</span>
+							</div>
+							<span className="read-btn">READ</span>
+						</div>
+					</div>
+				</a>
+			</Link>
 			<style jsx>{`
 				@import 'variables.scss';
 				.container {
@@ -116,6 +123,6 @@ export const NewsCard = ({ title, description, id, source, image }) => {
 					}
 				}
 			`}</style>
-		</div>
+		</>
 	);
 };

@@ -2,6 +2,7 @@ import { Paragraph } from 'components/common/paragraph';
 import { Title } from 'components/common/title';
 import { HeadTitle } from 'components/head-title';
 import { Layout } from 'components/layout';
+import { getAllGames } from 'lib/prismic-api';
 import * as React from 'react';
 import theme from 'theme';
 
@@ -80,21 +81,27 @@ const games = [
 	},
 ];
 
-const FreeToPlay = () => {
+const FreeToPlay = ({ allGames }) => {
 	return (
 		<Layout>
 			<HeadTitle>Free to Play Games</HeadTitle>
-			<ul>
-				{games.map((game, index) => (
-					<li key={`${game.id}-${index}`}>
-						<div className="image-container">
-							<img src={game.image} alt="" />
-						</div>
-						<Title type="h3">{game.title}</Title>
-						<Paragraph>{game.score} Metacritics</Paragraph>
-					</li>
-				))}
-			</ul>
+			{allGames && allGames.length ? (
+				<ul>
+					{allGames.map((game, index) => (
+						<a key={game.node._meta.uid} href={game.node.link} target="_blank" rel="noopener noreferrer">
+							<li key={`${game.node.id}-${index}`}>
+								<div className="image-container">
+									<img src={game.node.image.url} alt="" />
+								</div>
+								<Title type="h3">{game.node.title}</Title>
+								<Paragraph>{game.node.score} Metacritics</Paragraph>
+							</li>
+						</a>
+					))}
+				</ul>
+			) : (
+				<p>There are no games...</p>
+			)}
 			<style jsx>{`
 				ul {
 					display: grid;
@@ -112,6 +119,7 @@ const FreeToPlay = () => {
 							img {
 								background-color: ${theme.colors.dark.texts.text};
 								width: 100%;
+								height: 100%;
 								object-fit: cover;
 							}
 						}
@@ -121,5 +129,15 @@ const FreeToPlay = () => {
 		</Layout>
 	);
 };
+
+export async function getStaticProps() {
+	const allGames = await getAllGames();
+	return {
+		props: {
+			allGames,
+		},
+		revalidate: 1,
+	};
+}
 
 export default FreeToPlay;

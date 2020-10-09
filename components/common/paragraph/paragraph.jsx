@@ -5,6 +5,7 @@ import theme from 'theme';
 /**
  * @typedef {Object} ParagraphProps
  * @property {boolean} [center]
+ * @property {boolean} [little]
  * @property {any} children
  */
 
@@ -12,15 +13,19 @@ import theme from 'theme';
  *
  * @param {ParagraphProps} props
  */
-export const Paragraph = ({ children, center = false }) => {
+export const Paragraph = ({ children, center = false, little = false }) => {
 	return (
 		<>
-			<p>{children}</p>
+			<p className={`${little ? 'little' : ''}`}>{children}</p>
 			<style jsx>{`
 				p {
 					font-size: ${theme.typografy.paragraph}px;
 					margin: 0;
 					text-align: ${center ? 'center' : 'left'};
+				}
+				.little {
+					margin: 0;
+					font-size: ${theme.typografy.littleDetail}px;
 				}
 			`}</style>
 		</>

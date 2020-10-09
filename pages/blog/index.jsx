@@ -1,11 +1,12 @@
+import * as React from 'react';
 import { BlogCard } from 'components/blog-card';
 import { MarginBox } from 'components/common/margin-box';
 import { Title } from 'components/common/title';
 import { HeadTitle } from 'components/head-title';
 import { Layout } from 'components/layout';
-import * as React from 'react';
+import { getAllPosts } from 'lib/prismic-api';
 
-const Blog = () => {
+const Blog = ({ allPosts }) => {
 	return (
 		<Layout>
 			<HeadTitle>Blog</HeadTitle>
@@ -14,15 +15,15 @@ const Blog = () => {
 					<Title type="h3">Recent</Title>
 				</MarginBox>
 				<ul>
-					<BlogCard />
-					<BlogCard />
-					<BlogCard />
-					<BlogCard />
-					<BlogCard />
-					<BlogCard />
-					<BlogCard />
-					<BlogCard />
-					<BlogCard />
+					{allPosts.map((post) => (
+						<BlogCard
+							key={post.node._meta.uid}
+							title={post.node.title[0].text}
+							cover={post.node.cover.url}
+							coverAlt={post.node.cover.alt}
+							uid={post.node._meta.uid}
+						/>
+					))}
 				</ul>
 			</div>
 			<style jsx>{`
@@ -42,5 +43,15 @@ const Blog = () => {
 		</Layout>
 	);
 };
+
+export async function getStaticProps() {
+	const allPosts = await getAllPosts();
+	return {
+		props: {
+			allPosts,
+		},
+		revalidate: 1,
+	};
+}
 
 export default Blog;

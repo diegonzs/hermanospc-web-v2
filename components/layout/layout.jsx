@@ -183,6 +183,7 @@ export const Layout = ({ children, rightPanel }) => {
 				}
 				a {
 					text-decoration: none;
+					color: inherit;
 				}
 				button {
 					font-family: 'Poppins', 'sans-serif';

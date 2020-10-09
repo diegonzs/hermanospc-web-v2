@@ -1,27 +1,31 @@
-import { InfoCard } from 'components/common/info-card';
-import { MarginBox } from 'components/common/margin-box';
-import { Title } from 'components/common/title';
 import * as React from 'react';
+import Link from 'next/link';
 import theme from 'theme';
+import { Title } from 'components/common/title';
 
-export const BlogCard = () => {
+export const BlogCard = ({ title, cover, coverAlt = '', isNews = false, uid = '' }) => {
+	const path = isNews ? '/news/asdasdas' : `/blog/${uid}`;
 	return (
-		<div className="container">
-			<div className="image-container">
-				<img src="/images/testing/blog-card.png" alt="" />
-			</div>
-			<div className="content-container">
-				<MarginBox mb={[16]}>
-					<Title type="h4">AMD Launched Its New Processors 4th Gen with top prices</Title>
-				</MarginBox>
-				<div className="bottom-content">
-					<div className="source-content">
-						<img src="" alt="" />
-						<span>By Source</span>
+		<>
+			<Link href={path}>
+				<a>
+					<div className="container">
+						<div className="image-container">
+							<img src={cover} alt={coverAlt} />
+						</div>
+						<div className="content-container">
+							<Title type="h4">{title}</Title>
+							<div className="bottom-content">
+								<div className="source-content">
+									<img src="" alt="" />
+									<span>By Source</span>
+								</div>
+								<span className="read-btn">READ</span>
+							</div>
+						</div>
 					</div>
-					<span className="read-btn">READ</span>
-				</div>
-			</div>
+				</a>
+			</Link>
 			<style jsx>{`
 				@import 'variables.scss';
 				.container {
@@ -42,14 +46,20 @@ export const BlogCard = () => {
 				.image-container {
 					width: 100%;
 					height: 131px;
+					margin-bottom: 8px;
 					img {
 						width: 100%;
+						height: 100%;
 						object-fit: cover;
+						background-color: ${theme.colors.dark.backgrounds.childCard};
+						border-radius: 20px;
+						overflow: hidden;
 					}
 				}
 				.bottom-content {
 					display: flex;
 					justify-content: space-between;
+					margin-top: 16px;
 				}
 				.source-content {
 					display: flex;
@@ -89,6 +99,6 @@ export const BlogCard = () => {
 					}
 				}
 			`}</style>
-		</div>
+		</>
 	);
 };

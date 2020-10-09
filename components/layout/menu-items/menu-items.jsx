@@ -27,7 +27,7 @@ const items = [
 		id: 'news',
 		title: 'News',
 		image: '/images/menu-icons/home.svg',
-		path: '/',
+		path: '/news',
 	},
 	{
 		id: 'calculator',
@@ -49,7 +49,7 @@ const items = [
 	},
 	{
 		id: 'wallpapers',
-		title: 'Wallspapers',
+		title: 'Wallpapers',
 		image: '/images/menu-icons/home.svg',
 		path: '/wallpapers',
 	},
@@ -60,21 +60,15 @@ const Item = ({ isActive, image, title, path }) => {
 		<Link href={path}>
 			<a>
 				<li className={`item ${isActive ? 'item-active' : ''}`}>
-					<SVG className="icon" src={image} />
+					<SVG className="home-icon" src={image} />
 					<span className="text">{title}</span>
 				</li>
 				<style jsx>{`
 					@import 'variables.scss';
-					a {
-						text-decoration: none;
-					}
 					.item {
 						display: flex;
 						padding-left: 25px;
 						cursor: pointer;
-						& > :global(svg) {
-							width: 22px;
-						}
 						&:before {
 							content: '';
 							position: absolute;
@@ -92,6 +86,7 @@ const Item = ({ isActive, image, title, path }) => {
 					}
 					.text {
 						margin-left: 30px;
+						transition: color 0.2s ease;
 						color: ${isActive ? theme.colors.dark.icons.iconOnlyActive : theme.colors.dark.icons.iconOnly};
 						font-weight: 600;
 						@include for-small-desktop {
@@ -99,6 +94,32 @@ const Item = ({ isActive, image, title, path }) => {
 						}
 						@include for-mobile {
 							display: inline;
+						}
+					}
+				`}</style>
+				<style jsx global>{`
+					.item {
+						.home-icon {
+							width: 22px;
+							.a {
+								transition: all 0.2s ease;
+								fill: ${theme.colors.dark.icons.iconOnly};
+							}
+						}
+						&:hover {
+							.home-icon {
+								.a {
+									fill: ${theme.colors.dark.main.accent};
+								}
+							}
+						}
+					}
+					.item-active {
+						.home-icon {
+							.a {
+								color: white;
+								fill: ${theme.colors.dark.icons.iconOnlyActive};
+							}
 						}
 					}
 				`}</style>

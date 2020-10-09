@@ -2,31 +2,32 @@ import { Title } from 'components/common/title';
 import { HeadTitle } from 'components/head-title';
 import { Layout } from 'components/layout';
 import { WallpaperElem } from 'components/wallpaper-elem';
+import { getAllWallpapers } from 'lib/prismic-api';
 import * as React from 'react';
 
-const Wallpapers = () => {
+const Wallpapers = ({ allMobileWallpapers, allDesktopWallpapers }) => {
 	return (
 		<Layout>
 			<HeadTitle>Wallpapers</HeadTitle>
 			<section>
 				<Title type="h3">Desktop</Title>
 				<ul className="desktop-list">
-					<WallpaperElem />
-					<WallpaperElem />
-					<WallpaperElem />
-					<WallpaperElem />
-					<WallpaperElem />
-					<WallpaperElem />
+					{allDesktopWallpapers.map((elem) => (
+						<WallpaperElem
+							key={elem.node._meta.uid}
+							colors={elem.node.colors}
+							resolutions={elem.node.resolutions}
+							cover={elem.node.cover.url}
+						/>
+					))}
 				</ul>
 			</section>
 			<section className="mobile-section">
 				<Title type="h3">Mobile</Title>
 				<ul className="mobile-list">
-					<WallpaperElem isMobile />
-					<WallpaperElem isMobile />
-					<WallpaperElem isMobile />
-					<WallpaperElem isMobile />
-					<WallpaperElem isMobile />
+					{allMobileWallpapers.map((elem) => (
+						<WallpaperElem isMobile key={elem.node._meta.uid} colors={elem.node.colors} cover={elem.node.cover.url} />
+					))}
 				</ul>
 			</section>
 			<style jsx>{`
@@ -53,5 +54,18 @@ const Wallpapers = () => {
 		</Layout>
 	);
 };
+
+export async function getStaticProps() {
+	const allWallpapers = await getAllWallpapers();
+	const allMobileWallpapers = allWallpapers?.allWallpaper_mobiles?.edges;
+	const allDesktopWallpapers = allWallpapers?.allWallpaper_desks?.edges;
+	return {
+		props: {
+			allMobileWallpapers,
+			allDesktopWallpapers,
+		},
+		revalidate: 1,
+	};
+}
 
 export default Wallpapers;

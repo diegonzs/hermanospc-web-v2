@@ -12,13 +12,17 @@ const Home = () => {
 			<Layout>
 				<HeadTitle>For the Community</HeadTitle>
 				<ul className="feature-links-container">
-					<FeatureLink
-						topColor="#B84190"
-						bottomColor="#B84155"
-						title="News"
-						description="Tech and gaming industries"
-						image="/images/feature-links/calculator.png"
-					/>
+					<Link href="/news">
+						<a>
+							<FeatureLink
+								topColor="#B84190"
+								bottomColor="#B84155"
+								title="News"
+								description="Tech and gaming industries"
+								image="/images/feature-links/calculator.png"
+							/>
+						</a>
+					</Link>
 					<Link href="/calculator" passHref>
 						<a>
 							<FeatureLink
