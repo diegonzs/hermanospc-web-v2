@@ -22,7 +22,7 @@ const Login = () => {
 				<ul className="social-list">
 					<li>
 						<div className="image-container">
-							<img src="" alt="" />
+							<img src="/images/icons/google-icon.svg" alt="Google Icon" />
 						</div>
 						<span>Continue with Google</span>
 					</li>
@@ -84,7 +84,6 @@ const Login = () => {
 							justify-content: flex-start;
 							.image-container {
 								width: 20px;
-								background-color: yellow;
 								height: 20px;
 								margin-right: 50px;
 								img {

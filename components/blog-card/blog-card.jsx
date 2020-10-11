@@ -3,25 +3,33 @@ import Link from 'next/link';
 import theme from 'theme';
 import { Title } from 'components/common/title';
 
-export const BlogCard = ({ title, cover, coverAlt = '', isNews = false, uid = '' }) => {
-	const path = isNews ? '/news/asdasdas' : `/blog/${uid}`;
+export const BlogCard = ({
+	title,
+	cover,
+	coverAlt = '',
+	isNews = false,
+	uid = '',
+	sourceName = '',
+	sourceImage = '',
+}) => {
+	const path = isNews ? `/news/${uid}` : `/blog/${uid}`;
 	return (
 		<>
 			<Link href={path}>
 				<a>
 					<div className="container">
-						<div className="image-container">
-							<img src={cover} alt={coverAlt} />
-						</div>
-						<div className="content-container">
-							<Title type="h4">{title}</Title>
-							<div className="bottom-content">
-								<div className="source-content">
-									<img src="" alt="" />
-									<span>By Source</span>
-								</div>
-								<span className="read-btn">READ</span>
+						<div className="head-container">
+							<div className="image-container">
+								<img src={cover} alt={coverAlt} />
 							</div>
+							<Title type="h4">{title}</Title>
+						</div>
+						<div className="bottom-content">
+							<div className="source-content">
+								<img src={sourceImage} alt={sourceName} />
+								<span>By {sourceName}</span>
+							</div>
+							<span className="read-btn">READ</span>
 						</div>
 					</div>
 				</a>
@@ -34,6 +42,7 @@ export const BlogCard = ({ title, cover, coverAlt = '', isNews = false, uid = ''
 					width: 270px;
 					min-height: 236px;
 					background-color: ${theme.colors.dark.backgrounds.background};
+					justify-content: space-between;
 					&:hover {
 						.read-btn {
 							&:before {
@@ -68,7 +77,6 @@ export const BlogCard = ({ title, cover, coverAlt = '', isNews = false, uid = ''
 						width: 12px;
 						height: 12px;
 						object-fit: cover;
-						background-color: #597185;
 						margin-right: 8px;
 					}
 					span {

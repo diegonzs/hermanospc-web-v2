@@ -1,11 +1,29 @@
+import * as React from 'react';
+import { useSwrQuery, useUser } from 'hooks';
 import { BlogCard } from 'components/blog-card';
 import { MarginBox } from 'components/common/margin-box';
 import { Title } from 'components/common/title';
 import { HeadTitle } from 'components/head-title';
 import { Layout } from 'components/layout';
-import * as React from 'react';
+import { GET_ALL_LINKS, GET_FEED_LINKS, GET_FEED_ALL_LINKS_VARIABLES } from 'graphql/queries/links';
+import { NetworkStatus } from '@apollo/client';
+import { Loader } from 'components/common/loader';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { fetchMoreHandler } from 'lib/fetch-more-handler';
+import { selectedNewsVar } from 'lib/apollo-client';
 
-const NewsPage = () => {
+const NewsPage = ({ initializing }) => {
+	const user = useUser();
+	const query = user ? GET_FEED_LINKS : GET_ALL_LINKS;
+
+	const { data, loading, networkStatus, fetchMore, error } = useSwrQuery(query, {
+		variables: GET_FEED_ALL_LINKS_VARIABLES(user ? user.uid : '', 0),
+		notifyOnNetworkStatusChange: true,
+		fetchPolicy: 'cache-and-network',
+	});
+
+	const isLoaderVisible = loading || networkStatus === NetworkStatus.refetch || initializing || !data;
+
 	return (
 		<Layout>
 			<HeadTitle isNews>News</HeadTitle>
@@ -13,51 +31,40 @@ const NewsPage = () => {
 				<MarginBox mb={[15]}>
 					<Title type="h3">Latest</Title>
 				</MarginBox>
-				<ul>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-				</ul>
+				{isLoaderVisible ? (
+					<Loader />
+				) : (
+					<InfiniteScroll
+						className="news-list-container"
+						dataLength={data.links.length}
+						next={() => fetchMoreHandler({ fetchMore, offset: data.links.length, key: 'links' })}
+						hasMore={data.links_aggregate.aggregate.count > data.links.length}
+						loader={<Loader />}
+						endMessage={<p>There are no more :P</p>}
+					>
+						{data.links.map((link) => (
+							<div onClick={() => selectedNewsVar(link)}>
+								<BlogCard
+									isNews
+									key={link.id}
+									uid={link.id}
+									title={link.title}
+									sourceImage={link.source?.favicon}
+									sourceName={link.source?.name}
+									coverAlt={link.title}
+									cover={
+										link.cloudinary_id
+											? `https://res.cloudinary.com/tribuagency/image/upload/f_auto,q_70,w_260/${link.cloudinary_id}`
+											: link.image
+									}
+								/>
+							</div>
+						))}
+					</InfiniteScroll>
+				)}
 			</div>
-			<style jsx>{`
-				ul {
+			<style jsx global>{`
+				.news-list-container {
 					display: grid;
 					grid-template-columns: repeat(auto-fit, 270px);
 					grid-column-gap: 30px;
