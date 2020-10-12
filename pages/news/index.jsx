@@ -40,6 +40,7 @@ const NewsPage = ({ initializing }) => {
 						next={() => fetchMoreHandler({ fetchMore, offset: data.links.length, key: 'links' })}
 						hasMore={data.links_aggregate.aggregate.count > data.links.length}
 						loader={<Loader />}
+						scrollThreshold={1}
 						endMessage={<p>There are no more :P</p>}
 					>
 						{data.links.map((link) => (
@@ -70,6 +71,7 @@ const NewsPage = ({ initializing }) => {
 					grid-column-gap: 30px;
 					grid-row-gap: 24px;
 					justify-content: center;
+					overflow-y: hidden !important;
 				}
 			`}</style>
 		</Layout>

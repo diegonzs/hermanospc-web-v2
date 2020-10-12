@@ -16,6 +16,7 @@ export const Loader = () => {
 					display: flex;
 					justify-content: center;
 					grid-column: 1 / -1;
+					height: 100%;
 				}
 				.loader {
 					display: inline-block;
