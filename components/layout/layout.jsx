@@ -107,7 +107,7 @@ export const Layout = ({ children, rightPanel }) => {
 					@include for-mobile {
 						border-radius: none;
 						position: fixed;
-						top: 100%;
+						top: calc(100% - 56px);
 						height: 100vh;
 						border-radius: 0;
 						transition: transform 0.25s ease;
@@ -123,12 +123,12 @@ export const Layout = ({ children, rightPanel }) => {
 				}
 				.hide {
 					@include for-mobile {
-						transform: translateY(-56px);
+						transform: translateY(0);
 					}
 				}
 				.full {
 					@include for-mobile {
-						transform: translateY(-100vh);
+						transform: translateY(calc(-100vh + 56px));
 						border-top: none;
 						.grab-line {
 							display: flex;
