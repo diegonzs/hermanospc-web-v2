@@ -53,7 +53,7 @@ export const GET_LINK_BY_ID = gql`
 
 export const GET_ALL_LINKS = gql`
 	query GET_ALL_LINKS($userId: String, $offset: Int) {
-		links(limit: 3, order_by: { created_at: desc }, offset: $offset) {
+		links(limit: 12, order_by: { created_at: desc }, offset: $offset) {
 			...LinksAllFields
 		}
 		links_aggregate {
@@ -68,7 +68,7 @@ export const GET_ALL_LINKS = gql`
 export const GET_FEED_LINKS = gql`
 	query GET_FEED_LINKS($userId: String, $offset: Int) {
 		links(
-			limit: 10
+			limit: 12
 			order_by: { created_at: desc }
 			offset: $offset
 			where: { source: { users_sources: { user_id: { _eq: $userId } } } }
