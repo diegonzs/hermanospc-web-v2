@@ -4,20 +4,31 @@ import { NewsNav } from 'components/news-nav';
 import { SocialMediaList } from 'components/social-media-list';
 import Link from 'next/link';
 import theme from 'theme';
+import { useRouter } from 'next/router';
 
-export const HeadTitle = ({ children, isNews = false, smallMargin = false, backPath = '' }) => {
+export const HeadTitle = ({ children, isNews = false, smallMargin = false, backPath = '', isSSR = false }) => {
+	const router = useRouter();
 	return (
 		<div className="container">
-			{backPath && (
-				<Link href={backPath}>
-					<a className="link">
+			{backPath ? (
+				isSSR ? (
+					<Link href={backPath}>
+						<a className="link">
+							<div className="back-container">
+								<img src="/images/common-icons/chevron-left.svg" alt="" />
+								<span>View All</span>
+							</div>
+						</a>
+					</Link>
+				) : (
+					<div className="link" onClick={() => router.back()}>
 						<div className="back-container">
 							<img src="/images/common-icons/chevron-left.svg" alt="" />
 							<span>View All</span>
 						</div>
-					</a>
-				</Link>
-			)}
+					</div>
+				)
+			) : null}
 			<div className="head-content">
 				<Title type="h1">{children}</Title>
 				{isNews ? <NewsNav /> : <SocialMediaList />}
@@ -32,6 +43,7 @@ export const HeadTitle = ({ children, isNews = false, smallMargin = false, backP
 				.link {
 					width: 80px;
 					max-width: 80px;
+					cursor: pointer;
 				}
 				.back-container {
 					display: flex;

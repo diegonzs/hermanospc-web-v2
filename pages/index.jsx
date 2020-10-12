@@ -61,6 +61,11 @@ const Home = () => {
 					margin-bottom: 48px;
 					justify-content: center;
 					@include for-mobile {
+						padding: 0 20px;
+						padding-top: 30px;
+						margin-bottom: 56px;
+					}
+					@include for-tablet {
 						justify-content: start;
 						overflow-x: scroll;
 						overflow-y: hidden;

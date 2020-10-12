@@ -1,70 +1,53 @@
+import { NetworkStatus } from '@apollo/client';
 import { BlogCard } from 'components/blog-card';
+import { Loader } from 'components/common/loader';
 import { MarginBox } from 'components/common/margin-box';
+import { OnlyAuthUsers } from 'components/common/only-auth-users';
 import { Title } from 'components/common/title';
 import { HeadTitle } from 'components/head-title';
 import { Layout } from 'components/layout';
+import { NewsList } from 'components/news-list';
+import { ALL_LINKS_SAVED_QUERY, ALL_LINKS_SAVED_QUERY_VARIABLES } from 'graphql/queries/links-saved';
+import { useSwrQuery, useUser } from 'hooks';
 import * as React from 'react';
 
-const Saved = () => {
+const Saved = ({ initializing }) => {
+	const user = useUser();
+
+	const { data, networkStatus, fetchMore } = useSwrQuery(ALL_LINKS_SAVED_QUERY, {
+		variables: ALL_LINKS_SAVED_QUERY_VARIABLES(user ? user.uid : '', 0),
+		notifyOnNetworkStatusChange: true,
+		fetchPolicy: 'cache-first',
+	});
+
+	const isLoaderVisible = networkStatus === NetworkStatus.loading || initializing || !data;
+
+	let links = [];
+
+	if (data?.links_saved) {
+		links = data.links_saved.map((savedLink) => savedLink.link);
+	}
+
 	return (
 		<Layout>
-			<HeadTitle isNews>News</HeadTitle>
-			<div className="container">
-				<MarginBox mb={[15]}>
-					<Title type="h3">Saved</Title>
-				</MarginBox>
-				<ul>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-					<BlogCard
-						isNews
-						title="AMD Launched Its New Processors 4th Gen with top prices"
-						cover="/images/testing/blog-card.png"
-					/>
-				</ul>
-			</div>
-			<style jsx>{`
-				ul {
-					display: grid;
-					grid-template-columns: repeat(auto-fit, 270px);
-					grid-column-gap: 30px;
-					grid-row-gap: 24px;
-					justify-content: center;
-				}
-			`}</style>
+			<OnlyAuthUsers initializing={initializing}>
+				<HeadTitle isNews>News</HeadTitle>
+				<div className="container">
+					<MarginBox mb={[15]}>
+						<Title type="h3">Saved</Title>
+					</MarginBox>
+					{isLoaderVisible ? (
+						<Loader />
+					) : (
+						<NewsList
+							fetchMore={fetchMore}
+							totalLinks={data.links_saved_aggregate.aggregate.count}
+							links={links}
+							queryKey="links_saved"
+						/>
+					)}
+				</div>
+			</OnlyAuthUsers>
 		</Layout>
 	);
 };

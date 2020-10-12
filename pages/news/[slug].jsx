@@ -25,6 +25,7 @@ const NewsDetail = ({ parseResponse }) => {
 
 	let news;
 	const selectedNews = selectedNewsVar();
+
 	if (data?.links_by_pk) {
 		news = data.links_by_pk;
 	} else if (!!selectedNews) {
@@ -46,11 +47,11 @@ const NewsDetail = ({ parseResponse }) => {
 					}}
 				/>
 			)}
-			<HeadTitle smallMargin backPath="/news">
+			<HeadTitle smallMargin backPath="/news" isSSR={!!parseResponse}>
 				News
 			</HeadTitle>
 			<div className="wrapper">
-				{loading && !!news ? (
+				{loading && !news ? (
 					<Loader />
 				) : (
 					<div className="container">
@@ -65,7 +66,7 @@ const NewsDetail = ({ parseResponse }) => {
 							</div>
 							<span className="date">{moment(news.created_at).fromNow()}</span>
 						</div>
-						<div className="content">
+						<div className="news-detail-main-content">
 							<NewsContent content={news.source.is_allow ? news.content : news.description} />
 						</div>
 						<div className="action-container">
@@ -107,7 +108,6 @@ const NewsDetail = ({ parseResponse }) => {
 						img {
 							width: 17px;
 							height: 17px;
-							background-color: ${theme.colors.dark.icons.iconBtn};
 							margin-right: 8px;
 							border-radius: 5px;
 						}
@@ -117,35 +117,40 @@ const NewsDetail = ({ parseResponse }) => {
 						color: ${theme.colors.dark.icons.iconOnly};
 					}
 				}
-				.content {
+				.news-detail-main-content {
 					margin-bottom: 47px;
 				}
 			`}</style>
-			<style jsx>{`
-				.content {
-					:global(div, figure, table, iframe) {
+			<style jsx global>{`
+				.news-detail-main-content {
+					div,
+					figure,
+					table,
+					iframe {
 						width: 100% !important;
 					}
-					:global(img) {
+					img {
 						width: 100%;
 						object-fit: contain;
 						height: auto;
 					}
-					:global(h3, h2, h4) {
+					h3,
+					h2,
+					h4 {
 						margin-top: 2.4rem;
 					}
-					:global(ul) {
+					ul {
 						margin-top: 1.5rem;
 						padding-left: 2.5rem;
 					}
-					:global(li) {
+					li {
 						list-style: inside;
 					}
 					iframe,
 					img {
 						margin-top: 2rem;
 					}
-					:global(p) {
+					p {
 						text-align: left;
 						letter-spacing: 0px;
 						margin-top: 1.5rem;
@@ -156,10 +161,10 @@ const NewsDetail = ({ parseResponse }) => {
 							}
 						}
 					}
-					:global(strong) {
+					strong {
 						color: white;
 					}
-					:global(a) {
+					a {
 						text-decoration: none;
 						letter-spacing: 0px;
 						position: relative;

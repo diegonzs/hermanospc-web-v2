@@ -25,6 +25,7 @@ export const useFirebaseUser = (setToken, setInitializing) => {
 
 				// Check if the firebase user already have the hasura custom claims.
 				if (hasuraClaim) {
+					console.log('has hasura claims :P');
 					// Set the user.
 					userData.token = token;
 					setFinalUser({
@@ -43,6 +44,7 @@ export const useFirebaseUser = (setToken, setInitializing) => {
 					// Create the user session in the backend.
 					setUserCookie(userData);
 				} else {
+					console.log('does not has hasura claims :(');
 					// Update de token in firebase to add Hasura claims.
 					await fetch('/api/process-signup', {
 						method: 'POST',
@@ -87,12 +89,12 @@ export const useFirebaseUser = (setToken, setInitializing) => {
 					});
 
 					// Add user to the newsletter
-					fetch('/api/add-user-newsletter', {
-						method: 'POST',
-						body: JSON.stringify({
-							email: userData.email,
-						}),
-					});
+					// fetch('/api/add-user-newsletter', {
+					// 	method: 'POST',
+					// 	body: JSON.stringify({
+					// 		email: userData.email,
+					// 	}),
+					// });
 				}
 			} else {
 				console.log('there is no user :(');

@@ -6,29 +6,32 @@ import { Paragraph } from 'components/common/paragraph';
 import { NewsSourcesList } from 'components/news-sources-list/news-sources-list';
 import { MainBtn } from 'components/common/main-btn';
 import Link from 'next/link';
+import { OnlyAuthUsers } from 'components/common/only-auth-users';
 
-const NewsSettings = () => {
+const NewsSettings = ({ initializing }) => {
 	return (
 		<Layout>
-			<div className="container">
-				<Title type="h2" center>
-					News Settings
-				</Title>
-				<div className="description">
-					<Paragraph center>
-						Tell us what sources do you want to see in your news feed. If you don't see your favorite source contact us
-						to add it.
-					</Paragraph>
+			<OnlyAuthUsers initializing={initializing}>
+				<div className="container">
+					<Title type="h2" center>
+						News Settings
+					</Title>
+					<div className="description">
+						<Paragraph center>
+							Tell us what sources do you want to see in your news feed. If you don't see your favorite source contact
+							us to add it.
+						</Paragraph>
+					</div>
+					<NewsSourcesList />
+					<MarginBox mt={[62]}>
+						<Link href="/news">
+							<a>
+								<MainBtn text="Back to news" />
+							</a>
+						</Link>
+					</MarginBox>
 				</div>
-				<NewsSourcesList />
-				<MarginBox mt={[62]}>
-					<Link href="/news">
-						<a>
-							<MainBtn text="Back to news" />
-						</a>
-					</Link>
-				</MarginBox>
-			</div>
+			</OnlyAuthUsers>
 			<style jsx>{`
 				.container {
 					height: 100%;

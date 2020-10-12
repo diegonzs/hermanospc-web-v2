@@ -80,8 +80,8 @@ export const GET_FEED_LINKS = gql`
 				count
 			}
 		}
-		${FRAGMENT_LINKS_ALL_FIELDS}
 	}
+	${FRAGMENT_LINKS_ALL_FIELDS}
 `;
 
 /**

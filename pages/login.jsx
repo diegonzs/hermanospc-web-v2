@@ -3,12 +3,56 @@ import { SecondBtn } from 'components/common/second-btn';
 import { useRouter } from 'next/router';
 import { Logo } from 'components/layout/logo';
 import { Title } from 'components/common/title';
+import firebase from 'lib/firebase-client';
 import theme from 'theme';
 import { Paragraph } from 'components/common/paragraph';
 import { MarginBox } from 'components/common/margin-box';
+import { toast } from 'react-toastify';
 
 const Login = () => {
 	const router = useRouter();
+	const [isLoading, setIsLoading] = React.useState(false);
+
+	const handleSigninProvider = (provider) => {
+		setIsLoading(true);
+		let firebaseProvider;
+		if (provider === 'google') {
+			firebaseProvider = new firebase.auth.GoogleAuthProvider();
+		} else if (provider === 'facebook') {
+			firebaseProvider = new firebase.auth.FacebookAuthProvider();
+		} else if (provider === 'twitter') {
+			firebaseProvider = new firebase.auth.TwitterAuthProvider();
+		} else {
+			return;
+		}
+		firebase
+			.auth()
+			.signInWithPopup(firebaseProvider)
+			.then(async (result) => {
+				setIsLoading(false);
+				router.push('/');
+				// const token = await renewToken();
+				// if (token) {
+				// 	fetch('/api/fcm-register-topic', {
+				// 		method: 'POST',
+				// 		body: JSON.stringify({
+				// 			token,
+				// 			userId: result.user.uid,
+				// 		}),
+				// 	});
+				// }
+			})
+			.catch(function (error) {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				console.log({ errorCode, errorMessage });
+				setIsLoading(false);
+				toast(errorMessage, {
+					type: 'error',
+				});
+				return;
+			});
+	};
 	return (
 		<div className="container">
 			<div className="head-container">
@@ -20,11 +64,11 @@ const Login = () => {
 					Join our community of tech and game enthusiasts.
 				</Title>
 				<ul className="social-list">
-					<li>
+					<li onClick={() => handleSigninProvider('google')}>
 						<div className="image-container">
 							<img src="/images/icons/google-icon.svg" alt="Google Icon" />
 						</div>
-						<span>Continue with Google</span>
+						<span>Continu{isLoading ? 'ing' : 'e'} with Google</span>
 					</li>
 				</ul>
 				<div className="text-content">
@@ -82,6 +126,7 @@ const Login = () => {
 							background-color: white;
 							border-radius: 14px;
 							justify-content: flex-start;
+							cursor: pointer;
 							.image-container {
 								width: 20px;
 								height: 20px;
