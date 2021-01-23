@@ -9,13 +9,14 @@ import theme from 'theme';
  * @property {boolean} [isDisabled]
  * @property {'header' | 'default' | 'form'} [type]
  * @property {() => void} [onClick]
+ * @property {string} [minWidth]
  */
 
 /**
  *
  * @param {MainBtnProps} props
  */
-export const MainBtn = ({ text, href, isDisabled = false, type = 'default', onClick }) => {
+export const MainBtn = ({ text, href, isDisabled = false, type = 'default', onClick, minWidth = '' }) => {
 	return (
 		<>
 			{href ? (
@@ -41,6 +42,7 @@ export const MainBtn = ({ text, href, isDisabled = false, type = 'default', onCl
 					color: ${theme.colors.dark.texts.textBtn};
 					transition: all 0.2s ease-in-out;
 					cursor: pointer;
+					min-width: ${!!minWidth ? minWidth : '0'}px;
 					background-image: linear-gradient(
 						180deg,
 						${theme.colors.dark.main.mainBtn.top},
