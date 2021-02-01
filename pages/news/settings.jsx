@@ -3,7 +3,7 @@ import { Layout } from 'components/layout';
 import { Title } from 'components/common/title';
 import { MarginBox } from 'components/common/margin-box';
 import { Paragraph } from 'components/common/paragraph';
-import { NewsSourcesList } from 'components/news-sources-list/news-sources-list';
+import { NewsSourcesList } from 'components/news-sources-list';
 import { MainBtn } from 'components/common/main-btn';
 import Link from 'next/link';
 import { OnlyAuthUsers } from 'components/common/only-auth-users';

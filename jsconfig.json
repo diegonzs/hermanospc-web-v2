@@ -4,7 +4,7 @@
 		"target": "esnext",
 		"module": "commonjs",
 		"jsx": "react",
-		"checkJs": true
+		"checkJs": false
 	},
 	"exclude": ["node_modules"]
 }
