@@ -30,9 +30,11 @@ export const AuthRightPanel = () => {
 					<div className="icon-container">
 						<img className="icon-image" src="/images/icons/notification.svg" alt="" />
 					</div>
-					<div className="icon-container">
-						<img className="avatar-image" src="/images/testing/user-face.png" alt="" />
-					</div>
+					<Link href="profile">
+						<div className="icon-container">
+							<img className="avatar-image" src="/images/testing/user-face.png" alt="" />
+						</div>
+					</Link>
 				</div>
 			)}
 			<style jsx>{`
