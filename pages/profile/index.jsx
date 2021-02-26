@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Layout } from 'components/layout';
+import { Avatardetails } from 'components/avatar-details';
 
 const Profile = () => {
 	return (
 		<Layout>
-			<p>HOLA PROFILE</p>
+			<Avatardetails />
 		</Layout>
 	);
 };
