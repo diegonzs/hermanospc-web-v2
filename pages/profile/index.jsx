@@ -5,7 +5,7 @@ import { Avatardetails } from 'components/avatar-details';
 const Profile = () => {
 	return (
 		<Layout>
-			<Avatardetails />
+			<Avatardetails brotherhood={false} follow={false} />
 		</Layout>
 	);
 };
