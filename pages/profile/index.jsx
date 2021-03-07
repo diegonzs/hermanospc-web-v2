@@ -5,7 +5,14 @@ import { Avatardetails } from 'components/avatar-details';
 const Profile = () => {
 	return (
 		<Layout>
-			<Avatardetails brotherhood={false} follow={false} />
+			<Avatardetails
+				brotherhood={true}
+				follow={false}
+				widthActions={false}
+				isLeader={false}
+				brotherhood_role={'Ambassador'}
+				brotherhood_name={'Phoenix Gods'}
+			/>
 		</Layout>
 	);
 };
