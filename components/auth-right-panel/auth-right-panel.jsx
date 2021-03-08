@@ -25,7 +25,7 @@ export const AuthRightPanel = () => {
 			) : (
 				<div className="list">
 					<div className="icon-container">
-						<img className="icon-image" src="/images/icons/notification.svg" alt="" />
+						<img src="/images/icons/plus.svg" alt="" />
 					</div>
 					<div className="icon-container">
 						<img className="icon-image" src="/images/icons/notification.svg" alt="" />
