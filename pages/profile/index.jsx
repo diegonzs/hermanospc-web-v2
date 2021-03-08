@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Layout } from 'components/layout';
 import { MainBtn } from 'components/common/main-btn';
+import RightPanelProfile from './right_panel';
 import { Avatardetails } from 'components/avatar-details';
 
 const Profile = () => {
 	return (
-		<Layout>
+		<Layout rightPanel={<RightPanelProfile />}>
 			<div className="header-menu">
 				<Avatardetails
 					brotherhood={true}
