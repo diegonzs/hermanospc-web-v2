@@ -88,6 +88,26 @@ const Profile = () => {
 					max-width: 278px;
 					margin-bottom: 1rem;
 				}
+				@media only screen and (max-width: 767.9px) {
+					.item-row-container {
+						display: block;
+					}
+					.item-row-container .item-card {
+						margin: auto;
+						margin-bottom: 1rem;
+					}
+					.header-menu {
+						display: block;
+					}
+					.menu-buttons {
+						margin-top: 2rem;
+					}
+				}
+				@media (min-width: 768px) and (max-width: 991.9px) {
+					.item-row-container .item-card {
+						margin-right: 0.5rem;
+					}
+				}
 				.item-row-info .info-items button {
 					letter-spacing: 0px;
 					color: #bfbfbf;

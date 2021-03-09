@@ -1,5 +1,16 @@
 import * as React from 'react';
 
+/**
+ * @typedef {Object} CoinsCountProps
+ * @property {number} [green_count]
+ * @property {number} [purple_count]
+ */
+
+/**
+ *
+ * @param {CoinsCountProps} props
+ */
+
 const CoinsCount = ({ green_count, purple_count }) => {
 	return (
 		<>

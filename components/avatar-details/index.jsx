@@ -1,5 +1,20 @@
 import React from 'react';
 
+/**
+ * @typedef {Object} AvatardetailsProps
+ * @property {boolean} [brotherhood]
+ * @property {boolean} [follow]
+ * @property {boolean} [widthActions]
+ * @property {boolean} [isLeader]
+ * @property {string} [brotherhood_role]
+ * @property {string} [brotherhood_name]
+ */
+
+/**
+ *
+ * @param {AvatardetailsProps} props
+ */
+
 export const Avatardetails = ({ brotherhood, follow, widthActions, isLeader, brotherhood_role, brotherhood_name }) => {
 	return (
 		<div className="avatar-detail-container">
