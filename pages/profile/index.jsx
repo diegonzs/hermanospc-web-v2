@@ -19,7 +19,7 @@ const Profile = () => {
 				/>
 				<div className="menu-buttons">
 					<button className="sign-out">Sign out</button>
-					<MainBtn text="Settings" type="default" onClick={() => null} />
+					<MainBtn text="Settings" type="default" href="/profile-settings" />
 				</div>
 			</div>
 			<div className="item-row-info">
