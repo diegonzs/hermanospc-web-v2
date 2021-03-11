@@ -25,14 +25,16 @@ export const AuthRightPanel = () => {
 			) : (
 				<div className="list">
 					<div className="icon-container">
-						<img className="icon-image" src="/images/icons/notification.svg" alt="" />
+						<img src="/images/icons/plus.svg" alt="" />
 					</div>
 					<div className="icon-container">
 						<img className="icon-image" src="/images/icons/notification.svg" alt="" />
 					</div>
-					<div className="icon-container">
-						<img className="avatar-image" src="/images/testing/user-face.png" alt="" />
-					</div>
+					<Link href="profile">
+						<div className="icon-container">
+							<img className="avatar-image" src="/images/testing/user-face.png" alt="" />
+						</div>
+					</Link>
 				</div>
 			)}
 			<style jsx>{`
@@ -65,6 +67,12 @@ export const AuthRightPanel = () => {
 						width: 100%;
 						height: 100%;
 						object-fit: cover;
+						border: 2px solid transparent;
+						border-radius: 15px;
+					}
+					.avatar-image:hover {
+						border: 2px solid #0effa3 !important;
+						border-radius: 15px;
 					}
 				}
 			`}</style>

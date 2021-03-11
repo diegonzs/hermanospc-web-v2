@@ -4,9 +4,9 @@ import { SocialIcon } from 'components/common/social-icon';
 export const SocialMediaList = () => {
 	return (
 		<ul>
-			<SocialIcon icon="tiktok" />
+			<SocialIcon icon="Instagram" />
 			<SocialIcon icon="facebook" />
-			<SocialIcon icon="discord" />
+			<SocialIcon icon="Twitter" />
 			<SocialIcon icon="tiktok" />
 			<SocialIcon icon="linkedin" />
 			<SocialIcon icon="discord" />

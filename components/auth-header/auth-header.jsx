@@ -24,9 +24,11 @@ export const AuthHeader = () => {
 					<IconBtn>
 						<img className="notification-bell" src="/images/icons/notification.svg" alt="Notification Bell" />
 					</IconBtn>
-					<IconBtn>
-						<img className="avatar-pic" src="/images/testing/user-face.png" alt="user avatar" />
-					</IconBtn>
+					<Link href="/profile">
+						<IconBtn>
+							<img className="avatar-pic" src="/images/testing/user-face.png" alt="user avatar" />
+						</IconBtn>
+					</Link>
 				</div>
 			)}
 			<style jsx>{`
