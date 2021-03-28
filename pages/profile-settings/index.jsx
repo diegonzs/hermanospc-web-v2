@@ -1,10 +1,11 @@
 import React from 'react';
 import { Layout } from 'components/layout';
 import { MainBtn } from 'components/common/main-btn';
+import RightPanelProfileSettings from './right-panel';
 
 const ProfileSettings = () => {
 	return (
-		<Layout>
+		<Layout rightPanel={<RightPanelProfileSettings />}>
 			<div className="header-menu">
 				<h1 className="title">Settings</h1>
 				<div className="menu-buttons">
