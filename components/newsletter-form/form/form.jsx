@@ -19,7 +19,7 @@ export const Form = ({ onSubmit }) => {
 				onSubmit && onSubmit();
 			}}
 		>
-			<Input />
+			<Input placeholder="Email Address" />
 			<MainBtn text="Register" type="form" onClick={() => null} />
 			<style jsx>{`
 				.form {

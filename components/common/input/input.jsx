@@ -1,10 +1,10 @@
 import * as React from 'react';
 import theme from 'theme';
 
-export const Input = () => {
+export const Input = ({ placeholder }) => {
 	return (
 		<>
-			<input type="text" placeholder="Email address" />
+			<input type="text" placeholder={placeholder} />
 			<style jsx>{`
 				input {
 					width: 320px;
@@ -15,6 +15,7 @@ export const Input = () => {
 					border-radius: 14px;
 					border: none;
 					height: 48px;
+					outline: none;
 				}
 			`}</style>
 		</>
