@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout } from 'components/layout';
 import { MainBtn } from 'components/common/main-btn';
 import RightPanelProfileSettings from './right-panel';
+import { UploadImageInput } from 'components/common/upload-image-input';
 
 const ProfileSettings = () => {
 	return (
@@ -13,12 +14,23 @@ const ProfileSettings = () => {
 					<MainBtn text="Save" type="default" />
 				</div>
 			</div>
+			<div>
+				<h1 className="sub-title">Profile Image</h1>
+				<UploadImageInput />
+			</div>
 			<style jsx>{`
 				@import 'variables.scss';
 				.title {
 					letter-spacing: 0px;
 					color: #efefef;
 					font-size: 40px;
+				}
+				.sub-title {
+					font-size: 16px;
+					letter-spacing: 0px;
+					color: #efefef;
+					margin-top: 2rem;
+					margin-bottom: 1rem;
 				}
 				.header-menu {
 					display: flex;
