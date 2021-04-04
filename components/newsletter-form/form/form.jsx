@@ -1,4 +1,4 @@
-import { Input } from 'components/common/input';
+import { Input } from 'components/common/form/input';
 import { MainBtn } from 'components/common/main-btn';
 import * as React from 'react';
 /**
@@ -19,7 +19,7 @@ export const Form = ({ onSubmit }) => {
 				onSubmit && onSubmit();
 			}}
 		>
-			<Input />
+			<Input placeholder="Email Address" />
 			<MainBtn text="Register" type="form" onClick={() => null} />
 			<style jsx>{`
 				.form {

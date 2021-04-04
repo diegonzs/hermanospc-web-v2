@@ -1,13 +1,14 @@
 import * as React from 'react';
 import theme from 'theme';
 
-export const Input = () => {
+export const Input = ({ placeholder, CustomStyle = {} }) => {
 	return (
 		<>
-			<input type="text" placeholder="Email address" />
+			<input type="text" placeholder={placeholder} style={CustomStyle} />
 			<style jsx>{`
 				input {
-					width: 320px;
+					max-width: 320px;
+					width: 100%;
 					background-color: ${theme.colors.dark.inputs.input};
 					padding: 14px 16px;
 					color: ${theme.colors.dark.texts.text};
@@ -15,6 +16,7 @@ export const Input = () => {
 					border-radius: 14px;
 					border: none;
 					height: 48px;
+					outline: none;
 				}
 			`}</style>
 		</>

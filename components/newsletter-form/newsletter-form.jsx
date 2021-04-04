@@ -1,5 +1,3 @@
-import { Input } from 'components/common/input';
-import { MainBtn } from 'components/common/main-btn';
 import { Paragraph } from 'components/common/paragraph';
 import { Title } from 'components/common/title';
 import * as React from 'react';
