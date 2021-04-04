@@ -1,4 +1,4 @@
-import { Input } from 'components/common/input';
+import { Input } from 'components/common/form/input';
 import { MainBtn } from 'components/common/main-btn';
 import * as React from 'react';
 /**

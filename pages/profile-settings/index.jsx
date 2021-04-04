@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Layout } from 'components/layout';
 import { MainBtn } from 'components/common/main-btn';
 import RightPanelProfileSettings from './right-panel';
-import { UploadImageInput } from 'components/common/upload-image-input';
-import { Select } from 'components/common/select';
-import { Input } from 'components/common/input';
+import { UploadImageInput } from 'components/common/form/upload-image-input';
+import { Select } from 'components/common/form/select';
+import { Input } from 'components/common/form/input';
 
 const ProfileSettings = () => {
 	const [counter, setCounter] = useState(0);

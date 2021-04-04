@@ -1,8 +1,8 @@
 import * as React from 'react';
 import CoinsCount from 'components/coins-count';
-import { Input } from 'components/common/input';
-import { Textarea } from 'components/common/textarea';
-import { Select } from 'components/common/select';
+import { Input } from 'components/common/form/input';
+import { Textarea } from 'components/common/form/textarea';
+import { Select } from 'components/common/form/select';
 import { Switch } from 'components/common/switch';
 
 const RightPanelProfileSettings = () => {
